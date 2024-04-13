@@ -23,7 +23,7 @@ def synthesize_text():
     return Response(response=response_data, status=200)
     
 @app.route('/e', methods=['GET'])
-def synthesize_text():
+def synthesize_texteee():
     text = request.args.get('text', '')  # URLクエリパラメータからテキストを取得
 
     # Google Text-to-Speechを使用して音声を生成
