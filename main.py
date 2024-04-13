@@ -28,10 +28,10 @@ def synthesize_texteee():
 
     # Google Text-to-Speechを使用して音声を生成
     tts = gTTS(text=text, lang='ja')
-    tts.save('output.mp3')
+    tts.save('/tmp/output.mp3')
 
     # 生成された音声ファイルをbase64エンコード
-    with open('output.mp3', 'rb') as f:
+    with open('/tmp/output.mp3', 'rb') as f:
         audio_bytes = base64.b64encode(f.read()).decode('utf-8')
 
     # base64エンコードされた音声データをdata URL形式にしてレスポンスとして返す
