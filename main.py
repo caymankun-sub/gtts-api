@@ -4,7 +4,7 @@ import base64
 
 app = Flask(__name__)
 
-@app.route('/synthesize', methods=['POST'])
+@app.route('/', methods=['POST'])
 def synthesize_text():
     text = request.json.get('text', '')  # POSTリクエストからテキストを取得
 
