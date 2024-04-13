@@ -40,7 +40,7 @@ def synthesize_texteee():
     return audio_tag
 
 @app.route('/json', methods=['GET'])
-def synthesize_text():
+def synthesize_textbb():
     text = request.args.get('text', '')  # URLクエリパラメータからテキストを取得
 
     # Google Text-to-Speechを使用して音声を生成
