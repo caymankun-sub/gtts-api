@@ -1,4 +1,4 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 from gtts import gTTS
 import base64
 from flask_cors import CORS
@@ -38,6 +38,27 @@ def synthesize_texteee():
     audio_data_uri = f"data:audio/mp3;base64,{audio_bytes}"
     audio_tag = f"<audio controls src='{audio_data_uri}'></audio>"
     return audio_tag
+
+@app.route('/json', methods=['GET'])
+def synthesize_text():
+    text = request.args.get('text', '')  # URLクエリパラメータからテキストを取得
+
+    # Google Text-to-Speechを使用して音声を生成
+    tts = gTTS(text=text, lang='ja')
+    tts.save('/tmp/output.mp3')
+
+    # 生成された音声ファイルをbase64エンコード
+    with open('/tmp/output.mp3', 'rb') as f:
+        audio_bytes = base64.b64encode(f.read()).decode('utf-8')
+
+    # base64エンコードされた音声データをdata URL形式にしてレスポンスとして返す
+    audio_data_uri = f"data:audio/mp3;base64,{audio_bytes}"
+
+    # JSON形式でレスポンスを返す
+    response_data = {
+        "data": audio_data_uri
+    }
+    return jsonify(response_data)
 
 if __name__ == '__main__':
     app.run()
