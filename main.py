@@ -1,8 +1,10 @@
 from flask import Flask, request, Response
 from gtts import gTTS
 import base64
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['POST'])
 def synthesize_text():
