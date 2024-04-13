@@ -12,7 +12,7 @@ def synthesize_text():
 
     # Google Text-to-Speechを使用して音声を生成
     tts = gTTS(text=text, lang='ja')
-    tts.save('output.mp3')
+    tts.save('/tmp/output.mp3')
 
     # 生成された音声ファイルをbase64エンコード
     with open('output.mp3', 'rb') as f:
