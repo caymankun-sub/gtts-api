@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def synthesize_text():
     text = request.args.get('text', '')  # URLクエリパラメータからテキストを取得
 
