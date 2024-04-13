@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def synthesize_text():
-    text = request.json['text'] if 'text' in request.json else ''
+    text = request.args.get('text', '')  # URLクエリパラメータからテキストを取得
 
     # Google Text-to-Speechを使用して音声を生成
     tts = gTTS(text=text, lang='ja')
